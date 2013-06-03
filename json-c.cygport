@@ -1,0 +1,33 @@
+NAME="json-c"
+VERSION=0.11
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="C JSON library"
+DESCRIPTION="JSON-C implements a reference counting object model that allows
+you to easily construct JSON objects in C, output them as JSON formatted
+strings and parse JSON formatted strings back into the C representation of
+JSON objects."
+HOMEPAGE="https://github.com/json-c/json-c/wiki"
+SRC_URI="https://s3.amazonaws.com/json-c_releases/releases/json-c-${VERSION}.tar.gz"
+
+PKG_NAMES="libjson-c2 libjson-c-common libjson-c-devel libjson-devel"
+libjson_c2_REQUIRES="libjson-c-common"
+libjson_c2_CONTENTS="usr/bin/cygjson-c-2.dll"
+libjson_c_common_CONTENTS="usr/share/doc/"
+libjson_c_devel_CONTENTS="usr/include/ usr/lib/"
+libjson_devel_CATEGORY="_obsolete"
+libjson_devel_REQUIRES="libjson-c-devel"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook() {
+	make distclean
+}
+
+CYGCONF_ARGS="--disable-oldname-compat"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	dopkgconfig json.pc
+}
