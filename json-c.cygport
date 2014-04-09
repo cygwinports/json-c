@@ -1,6 +1,6 @@
 NAME="json-c"
 VERSION=0.11
-RELEASE=1
+RELEASE=2
 CATEGORY="Libs"
 SUMMARY="C JSON library"
 DESCRIPTION="JSON-C implements a reference counting object model that allows
@@ -9,6 +9,12 @@ strings and parse JSON formatted strings back into the C representation of
 JSON objects."
 HOMEPAGE="https://github.com/json-c/json-c/wiki"
 SRC_URI="https://s3.amazonaws.com/json-c_releases/releases/json-c-${VERSION}.tar.gz"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/json-c.git/plain/90.patch
+	http://pkgs.fedoraproject.org/cgit/json-c.git/plain/94.patch
+	http://pkgs.fedoraproject.org/cgit/json-c.git/plain/json-c-0.11-cflags.patch
+	http://pkgs.fedoraproject.org/cgit/json-c.git/plain/json-c-0.11-cve.patch
+"
 
 PKG_NAMES="libjson-c2 libjson-c-common libjson-c-devel libjson-devel"
 libjson_c2_REQUIRES="libjson-c-common"
